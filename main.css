@@ -1,0 +1,132 @@
+﻿*{	margin: 0 auto; padding: 0 auto; border: none; text-align: center; }
+
+::-webkit-scrollbar { width: 10px; background-color: #eee; }
+::-webkit-scrollbar-thumb { background-color: #999;}
+
+textarea{ font-family: 'Open Sans', Arial, "Times New Roman", serif; color: inherit;
+			padding: 0px 10px 10px 10px; margin: 0; border: 0; font-size: 1.2rem; resize: none; }
+textarea:focus{ outline: none; }
+textarea::-webkit-input-placeholder { color: #333; }
+textarea:-moz-placeholder { color: #333; }
+input::-webkit-input-placeholder { color: #333; }
+input:-moz-placeholder { color: #333; }
+
+textarea::-webkit-scrollbar, #add_container::-webkit-scrollbar { width: 10px; background-color: transparent; }
+textarea::-webkit-scrollbar-thumb, #add_container::-webkit-scrollbar-thumb { -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,0.4); background-color: transparent; width: 20px;}
+
+.hide{ display: none; }
+
+body{	/*background: url(bg/TorontoBW3X.jpg) repeat center center fixed; -webkit-background-size: cover;*/
+		height: 100%; width: 100%; background-color: #eee; color: white;
+		font-family: 'Open Sans', Arial, "Times New Roman", serif; font-size: 62.5%; }
+		
+#main_wrapper{	height: 91%; width: 1000px; font-size: 1.2rem; }
+
+input{ cursor: pointer; border-style: none; vertical-align: top; text-decoration:none; }
+#color_picker_container{	width: inherit; vertical-align: top; padding: 0 0 0 100px; position: fixed; z-index: 2; }
+.color_picker{ width: 100px; height: 10px; float: left; cursor: pointer; text-align: right; } 
+.color_picker:hover{ opacity: .8; }
+.color_only{ height: 20px; color: #eee; font-size: .5rem; text-transform: uppercase; float: left; display: none; }
+.color_only:hover{ text-shadow: 1px 2px 1px #333; opacity: .8; }
+#divider{	width: inherit; height: 80px; position: fixed; z-index: 1; }
+
+#main_container{	width: inherit; height: 100%; padding-top: 80px; }
+#left_container, #main_divider, #right_container { float: left; }
+
+/*#left_container{ width: 300px; text-align: right; position: fixed; z-index: 1; }*/
+#left_container{ width: 300px; text-align: right; }
+	details summary::-webkit-details-marker { display:none; }
+	summary{ background-color: #aaa; color: #fff; padding: 0 10px 0 0; cursor: pointer; text-align: right; }
+	summary:focus{ outline: none; }
+	#span_header:hover{ text-shadow: 0px 2px 3px #000; color: #eee; }
+	#notification{ font-size: .9em; color: #222; background-color: #ccc; padding: 10px 10px 10px 10px; }
+	#no_notif{ font-weight: bold; display: inline; width: 50px; background-color: inherit; font-size: 1.2em; cursor: pointer; }
+	#no_notif:hover{ text-shadow: 0px 2px 3px #000; color: #eee; }
+	.details_container{ background-color: #ccc; padding: 0 10px 10px 10px; }
+	
+		#menu{ margin: 0 0 10px 0; }
+		.btn{	height: 50px; width: 50px; margin: 0; cursor: pointer; }
+		#options{ background: url('images/options.png') #ccc no-repeat center; }
+			#options:hover{ background-image: url('images/options_hover.png'); }
+		#all{ background: url('images/all.png') #ccc no-repeat center; }
+			#all:hover{ background-image: url('images/all_hover.png'); }
+		#help{ background: url('images/help.png') #ccc no-repeat center; }
+			#help:hover{ background-image: url('images/help_hover.png'); }
+		#add{ background: url('images/add.png') #ccc no-repeat center; }
+			#add:hover{ background-image: url('images/add_hover.png'); }
+		#done{ background: url('images/done.png') #ccc no-repeat center; }
+			#done:hover{ background-image: url('images/done_hover.png'); }
+		#hide_done{ background: url('images/hide_done.png') #ccc no-repeat center; }
+			#hide_done:hover{ background-image: url('images/hide_done_hover.png'); }
+			
+		#add_todoo{ color: white; padding: 0px 0 0 0 ;}
+			#add_container{ height: 620px; margin: 0 auto; padding: 10px 10px 10px 10px; overflow: auto; }
+			#add_color_picker_container{ float: left; }
+				.add_color_picker{ float:left; width: 35px; }
+			#txt_todoo{ width: 200px; height: 100px; margin: 10px 0 0 0; background-color: #aaa; color: #000; font-weight: bold; }
+			#txt_note{ 	width: 220px; height: 420px; text-align: left; margin: 5px 0 0 0; background-color: #aaa; font-size: .87em; 
+						background: url('bg/line.png') transparent repeat top;color: #000; }
+			.datepicker{ font-family: 'Open Sans', Cambria, "Times New Roman", serif; border: 0;  width: 150px; 
+							margin: 0; padding: 5px 10px 5px 10px; display: inline; }
+			.btn_clearDate { font-family: 'Open Sans', Cambria, "Times New Roman", serif; font-size: .8rem; display: none; width: 30px;
+								margin: 0; padding: 5px 10px 5px 10px; text-decoration: none; border: 0px; background-color: #333; color: #333; }
+			.btn_clearDate:hover{ background-color: #1D1D1D; }
+			.subbtn { float: right; width: 50px; height: 25px; min-width: 100px; margin: 10px 10px 10px 10px; text-decoration: none; border: 0px;    		
+						background-color: #333; }
+			.subbtn:hover{ background-color: #1D1D1D; }
+			
+#output{ padding-left: 300px; }
+#main_divider{ width: 10px; /*background: url('images/divider.png') transparent;*/ height: 100%; position: fixed; }
+#right_container{ width: 690px; height: auto; padding-left: 10px;  }
+
+/*DISPLAY*/
+.margin_todoo{
+	margin: 0px 0px 20px 0px;
+}
+.todoo_datepicker{
+	font-family: 'Open Sans', Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+	border: 0;
+	font-size: .8rem;
+	width: 300px;
+	cursor: pointer;
+	margin: 0;
+	padding: 5px 10px 5px 10px;
+	display: inline;
+}
+
+.todoo_container{
+	color: white;
+	font-family: 'Open Sans', Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+	display: inline-block;
+	font-size: 1.4rem;
+}
+
+.todoo_title{
+	color: white;
+	font-family: 'Open Sans', Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+	font-size: 1.4rem;
+	max-width: 600px;	
+	padding: 10px 30px 10px 20px;
+	margin: 0px 0px 0px 0px;
+	vertical-align: middle;
+	text-align: left;
+	display: block;
+	word-wrap: break-word;
+}
+
+.todoo_date{
+	color: white;
+	opacity: .9;
+	font-family: 'Open Sans', Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+	font-size: .9rem;
+	max-width: 300px;	
+	padding: 5px 0px 5px 0px;
+	margin: 0px 0px 0px 0px;
+	text-align: center;
+	display: block;
+}
+
+.done{	opacity: .5; }
+.done:hover{ opacity: .7; }
+
+.todoo_title:hover{ text-shadow: 0px 2px 3px #000; }

@@ -1,0 +1,115 @@
+﻿<html lang="en">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">  
+    <title>todoo</title>
+    <!--Back up jquery-->
+	<link href="jquery/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	<script src="jquery/jquery-1.8.3.js"></script>
+	<script src="jquery/jquery-ui.js"></script>
+    <script src="json/json.js"></script>
+    
+    <!--SNOW EFFECT credits to: http://www.somethinghitme.com/2012/12/08/snowfall-1-6/-->
+    <script src='snow/snowfall.jquery.js'></script>
+	<link rel="stylesheet" href="snow/styles.css"></link>
+    
+    <!--<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    
+    <script src="https://apis.google.com/js/client.js?onload=OnLoadCallback"></script>--> 
+    <script type="text/javascript" src="js/db.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/i.js"></script>
+    <script type="text/javascript" src="js/r.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="main.css" /> 
+</head>
+<body>
+    <div id="main_wrapper">
+            <div id="color_picker_container">
+                <div id="color0" class="color">
+                	<input id="btnColor0" class="color_picker" type="button"/>
+                	<input id="btnColorOnly0" class="color_only" type="button" value="only" title="show this color only"/>
+                </div>
+                <div id="color1" class="color">
+                	<input id="btnColor1" class="color_picker" type="button"/>
+                	<input id="btnColorOnly1" class="color_only" type="button" value="only" title="show this color only"/>
+                </div>
+                <div id="color2" class="color">
+                	<input id="btnColor2" class="color_picker" type="button"/>
+                	<input id="btnColorOnly2" class="color_only" type="button" value="only" title="show this color only"/>
+                </div>
+                <div id="color3" class="color">
+                	<input id="btnColor3" class="color_picker" type="button"/>
+                	<input id="btnColorOnly3" class="color_only" type="button" value="only" title="show this color only"/>
+                </div>
+                <div id="color4" class="color">
+                	<input id="btnColor4" class="color_picker" type="button"/>
+                	<input id="btnColorOnly4" class="color_only" type="button" value="only" title="show this color only"/>
+                </div>
+                <div id="color5" class="color">
+                	<input id="btnColor5" class="color_picker" type="button"/>
+                	<input id="btnColorOnly5" class="color_only" type="button" value="only" title="show this color only"/>
+                </div>
+                <div id="color6" class="color">
+                	<input id="btnColor6" class="color_picker" type="button"/>
+                	<input id="btnColorOnly6" class="color_only" type="button" value="only" title="show this color only"/>
+                </div>
+                <div id="color7" class="color">
+                	<input id="btnColor7" class="color_picker" type="button"/>
+                	<input id="btnColorOnly7" class="color_only" type="button" value="only"/>
+                </div>
+            </div>
+            <div id="divider"></div>
+        <div id="main_container">
+        	<div id="left_container">
+            <div id="notification">You have <span id="no_notif" title="show today's event/s only.">no</span> <span id="events_str">events</span> today.</div>
+            	<details id="menu">
+                	
+                	<summary id="todoo_header"><span id="span_header">todoo&nbsp;</span></summary>
+                    <div class="details_container">
+                    	<input type="button" id="help" class="btn" title="help"></input>
+						<input type="button" id="options" class="btn" title="options"></input>
+        				<input type="button" id="all" class="btn" title="show all todoos"></input>
+                        <input type="button" id="done" class="btn" title="show done todoos"></input>
+                        <input type="button" id="hide_done" class="btn hide" title="hide done todoos"></input>
+                        <input type="button" id="add" class="btn" title="add a todoo"></input>
+                        <div class="divider"></div>
+                        <div id="add_todoo">
+                        	<div id="option">add todoo</div>
+        					<div id="add_color_picker_container">
+					        	<input id="add_btnColor0" class="add_color_picker" type="button"/>
+		        				<input id="add_btnColor1" class="add_color_picker" type="button"/>
+		        				<input id="add_btnColor2" class="add_color_picker" type="button"/>
+						    	<input id="add_btnColor3" class="add_color_picker" type="button"/>
+						      	<input id="add_btnColor4" class="add_color_picker" type="button"/>
+						       	<input id="add_btnColor5" class="add_color_picker" type="button"/>
+						     	<input id="add_btnColor6" class="add_color_picker" type="button"/>
+						       	<input id="add_btnColor7" class="add_color_picker" type="button"/>
+        					</div>           
+							<div id="add_container"> 
+                                <div>
+									<textarea id="txt_todoo" required="required" maxlength="154" placeholder="todoo here." value=""></textarea>
+                                    <textarea id="txt_note" maxlength="50000" placeholder="add notes here."></textarea>
+                                    <input type="text" id="datepicker" class="datepicker" placeholder="add a date.">
+                                    <input id="btn_clearDate" class="btn_clearDate" type="button" value="x"/>
+                                    <input id="btn_add" type="submit" class="subbtn" value="add"></input>
+                                    <input id="btn_done" type="submit" class="subbtn hide" value="set as done"></input>
+                                    <input id="btn_undo" type="submit" class="subbtn hide" value="undo"></input>
+                                    <input id="btn_delete" type="submit" class="subbtn hide" value="delete"></input>
+                                </div>
+        					</div>
+                        </div>
+                    </div>
+                </details>
+                			
+            </div>
+            <div id="output">
+                <div id="main_divider">&nbsp;</div>
+                <div id="right_container">&nbsp;</div>
+            </div>
+        </div>
+	</div>
+</body>
+</html>
