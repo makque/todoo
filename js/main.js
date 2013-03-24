@@ -1,10 +1,85 @@
+/*jQuery(document).ready(function($) {
+//LocalStorage
+//var data = { "timeStamp": timeStamp, "title": todoo_title, "note": note, "color": color, "dueDate": dueDate, "isActive": 1 };
+//MODEL
+Todoo = Backbone.Model.extend({
+	defaults: {
+		id: new Date().getTime(),
+		title: "Untitled",
+		note: "",
+		color: 0,
+		due_date: null,
+		done: false
+	},
+	initialize: function(){
+		//renderTodo(this);
+		alert("todoo created.");
+	},
+	toggle: function () {
+		this.save( { done: !this.get("done") } );
+	}
+});
+
+todoos = new Todoos;
+
+//VIEW
+TodooView = Backbone.View.extend({
+	tagName: "#output",
+	//template: _.template( $("#todoo-template").html() ),
+	/*events: {
+		"click .todoo_state" : "toggleDone",
+		"click .todoo_title" : "toggleHidden",
+		"dblclick .todoo_title" : "editTitle",
+		"click button.note_btn" : "toggleNote",
+		"keyup textarea.todoo_note" : "save",
+		"click button.change_color_btn" : "change_color",
+		"click button.add_date_btn" : "add_date",
+		"click button.remove_date_btn" : "remove_date",
+		"click button.delete_btn" : "delete"
+	},
+	initialize: function(model) {
+		this.render(model);
+	},
+	render: function(model){
+		//this.$el.html( this.template(this.model.toJSON()) );
+		alert(model.get("id"));
+	},
+	toggleDone : function() {
+		this.model.toggle();
+	}
+});
+
+//APPLICATION
+AppView = Backbone.View.extend({
+	el: $("body"),
+	events: {
+		"click #add_todoo" : "add"
+	},
+	add: function(){
+		//var todoo = new Todoo();
+		//alert( "id: " + todoo.get("id") + " title:" + todoo.get("title") );
+		todoos.add(new TodooView(new Todoo()));
+	}
+
+});
+
+appview = new AppView;
+});
+
+
+window.onload = init;
+
 function init() {
-	todoo.indexedDB.open();
+	//todoo.indexedDB.open();
 	initButtons();
-	initBG();
+
+	var t = new Date();
+	var data = { "timeStamp": t, "title": "Title here.", "note": "Notes here.", "color": "rgb(153, 153, 153)", "due_date": "03/12/2013", "is_active": 1 };
+	//todoo.indexedDB.addTodo(data);
+	/*initBG();
 	setShowHideAddCookie();
 	setShowHideByColors();
-	document.getElementById('right_container').innerHTML = "";
+	//document.getElementById('right_container').innerHTML = "";
 	renderByColors();
 	setShowHideDone();
 	getIsNotifRead();
@@ -24,9 +99,16 @@ function init() {
 		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
 		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();*/
+		})();
 }
 
+
+
+
+function add(){
+	var todoo = new Todoo();
+	alert( "id: " + todoo.get("id") + " title:" + todoo.get("title") );
+}
 //setCookie("isNotifRead", 1, 365);
 function getIsNotifRead(){
 	if(getCookie("isNotifRead") == "1"){
@@ -282,7 +364,7 @@ function setDatePicker(datepickerId){
 function initBG(){
 	var primColor = "#1D1D1D";
 	var secColor = "#999999";
-	add_container.style.backgroundColor = secColor;
+	//add_container.style.backgroundColor = secColor;
 }
 
 function showAdd(){
@@ -600,7 +682,7 @@ function addTask(){
 	});
 	request.execute(function(response) {
 	  alert("response: " + response.longUrl);
-	});*/
+	});
 	gapi.client.setApiKey('AIzaSyDZ6mgergvwA-UPpUu5Q5THyyDjPkqE5W0');
 	var request = gapi.client.plus.activities.search({'query': 'Google+', 'orderBy': 'best'});
 	request.execute(handleResp);
@@ -632,5 +714,5 @@ function getStrMonth(monthNum){
 	}
 	return m;
 }
-window.onload = init;
 
+*/

@@ -1,4 +1,92 @@
-﻿*{	margin: 0 auto; padding: 0 auto; border: none; text-align: center; }
+﻿*{
+	margin: 0 auto; 
+	padding: 0; 
+}
+
+body{
+	background-color: #eee;
+	color: #1D1D1D;
+	font-family: 'Open Sans', Arial, "Times New Roman", serif; 
+	font-size: 62.5%;
+	height: 100%; 
+	width: 100%;  
+}
+
+/*INHERIT ATTRIBUTES*/
+button{
+	background-color: #1D1D1D;
+	border: none;
+	color: #eee;
+	cursor: pointer;
+}
+
+header h1, header ul, header ul li, header ul li button{
+	display: inline;
+	position: relative;
+	vertical-align: bottom;
+}
+
+header{
+	text-align: center;
+}
+
+header h1{
+	float: left;
+}
+
+header button#add_todoo{
+	float: right;
+}
+
+header ul li button, header button#add_todoo{
+	border-radius: 3px;
+}
+
+/*GENERAL CLASSES*/
+.engrave,
+header ul li button{
+	border: solid 1px rgba(0, 0, 0, .2);
+	box-shadow: 1px 1px 1px rgba(250, 250, 250, .5);
+}
+
+.emboss,
+header, button:hover{
+	background-color: #eee;
+	border: solid 1px rgba(250, 250, 250, .2);
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
+	color: #1D1D1D;
+}
+
+.dark_border_bot{
+	border-bottom: solid 1px rgba(0, 0, 0, .4);
+}
+
+/*HIERARCHY*/
+header{
+	background-color: #ccc;
+	padding: 10px 10px 10px 10px;
+	position: relative;
+}
+	header h1{
+		font-weight: 300;
+	}
+	header ul.color_views{
+	}
+		header ul li{
+			list-style-type: none;
+		}
+			header ul li button{
+				height: 30px;
+				width: 30px;
+			}
+	header button#add_todoo{
+		width: 30px;
+		height: 30px;
+	}
+
+
+/*
+*{	margin: 0 auto; padding: 0 auto; border: none; text-align: center; }
 
 ::-webkit-scrollbar { width: 10px; background-color: #eee; }
 ::-webkit-scrollbar-thumb { background-color: #999;}
@@ -16,7 +104,7 @@ textarea::-webkit-scrollbar-thumb, #add_container::-webkit-scrollbar-thumb { -we
 
 .hide{ display: none; }
 
-body{	/*background: url(bg/TorontoBW3X.jpg) repeat center center fixed; -webkit-background-size: cover;*/
+body{	/*background: url(bg/TorontoBW3X.jpg) repeat center center fixed; -webkit-background-size: cover;
 		height: 100%; width: 100%; background-color: #eee; color: white;
 		font-family: 'Open Sans', Arial, "Times New Roman", serif; font-size: 62.5%; }
 		
@@ -33,7 +121,7 @@ input{ cursor: pointer; border-style: none; vertical-align: top; text-decoration
 #main_container{	width: inherit; height: 100%; padding-top: 80px; }
 #left_container, #main_divider, #right_container { float: left; }
 
-/*#left_container{ width: 300px; text-align: right; position: fixed; z-index: 1; }*/
+/*#left_container{ width: 300px; text-align: right; position: fixed; z-index: 1; }
 #left_container{ width: 300px; text-align: right; }
 	details summary::-webkit-details-marker { display:none; }
 	summary{ background-color: #aaa; color: #fff; padding: 0 10px 0 0; cursor: pointer; text-align: right; }
@@ -76,10 +164,10 @@ input{ cursor: pointer; border-style: none; vertical-align: top; text-decoration
 			.subbtn:hover{ background-color: #1D1D1D; }
 			
 #output{ padding-left: 300px; }
-#main_divider{ width: 10px; /*background: url('images/divider.png') transparent;*/ height: 100%; position: fixed; }
+#main_divider{ width: 10px; /*background: url('images/divider.png') transparent; height: 100%; position: fixed; }
 #right_container{ width: 690px; height: auto; padding-left: 10px;  }
 
-/*DISPLAY*/
+/*DISPLAY
 .margin_todoo{
 	margin: 0px 0px 20px 0px;
 }
@@ -129,4 +217,4 @@ input{ cursor: pointer; border-style: none; vertical-align: top; text-decoration
 .done{	opacity: .5; }
 .done:hover{ opacity: .7; }
 
-.todoo_title:hover{ text-shadow: 0px 2px 3px #000; }
+.todoo_title:hover{ text-shadow: 0px 2px 3px #000; } */

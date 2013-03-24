@@ -1,4 +1,14 @@
-// IndexedDB
+//LOCAL STORAGE
+//COLLECTION
+jQuery(document).ready(function($) {
+
+
+
+});
+
+
+/*
+//IndexedDB
 var todoo = {};
 var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB;
 
@@ -147,3 +157,5 @@ todoo.indexedDB.countToday = function() {
 	document.getElementById('right_container').innerHTML = "";
 	cursorRequest.onerror = todoo.indexedDB.onerror;
 };
+
+*/
