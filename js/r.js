@@ -32,15 +32,3 @@ function renderTodo(row) {
 
 	render(row);
 }
-
-//new rendering method
-function render(todoo){
-	output = $("#output");
-	alert("render new");
-
-	todoo.fetch({
-        success: function (todoo) {
-            alert(todoo.toJSON());
-        }
-    })
-}

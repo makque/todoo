@@ -34,14 +34,14 @@ jQuery(document).ready(function($) {
 			id: new Date().getTime(),
 			title: "Untitled",
 			note: "",
-			tasks: null,
+			tasks: null, //{"Finish Assignment.":{"done":true}, "Pay internet.":{"done":false} },
 			color: 0,
 			due_date: null,
 			done: false
 		},
 		initialize: function(){
 			//renderTodo(this);
-			alert("todoo created.");
+			//alert("todoo created.");
 		},
 		toggle: function () {
 			this.save( { done: !this.get("done") } );
@@ -112,37 +112,45 @@ jQuery(document).ready(function($) {
 
 	//APP VIEW
 	TodooView = Backbone.View.extend({
-		el: "div",
+		className: "todoo_container",
 		events: {
-
+			"click .todoo_delete": "test"
 		},
 		initialize: function(){
 			//return this.model.get("id");
 		},
 		render: function(){
-			tasks_count = this.countTasks(this.model.get("tasks"));
-			elem = 	"<div class='todoo_container'>";
-			elem += "	<div class='todoo_info'>";
-			elem += "		<div class='todoo_state "+ (this.model.get("done") ? "checked" : "unchecked") + "'></div>";
-			elem += "		<div class='todoo_date'>"+ (this.model.get("due_date") ? this.model.get("due_date") : "" ) +"</div>";
-			elem += "		<div class='todoo_tasks_count'>"+ ( tasks_count ? tasks_count["not_done"]+"/"+tasks_count["all"] : "" ) +"</div>";
-			elem += "	</div>";
-			elem += "	<div class='todoo_title'>"+this.model.get("title")+"</div>";
-			elem += "	<div class='todoo_hidden'>";
-			elem += "		<div class='todoo_note_info'>NOTES</div>";
-			elem += "		<textarea class='todoo_note'>"+this.model.get("note")+"</textarea>";
-			elem += "		<div class='todoo_tasks_info'>TASKS</div>";
-			elem += "		<div class='todoo_tasks'>"+this.model.get("note")+"</div>";
-			elem += "		<div class='todoo_submenu'>";
-			elem += "			<button class='todoo_change_color'>change color</button>";
-			elem += "			<button class='todoo_add_date'>add date</button>";
-			elem += "			<button class='todoo_remove_date' style='display:"+(this.model.get("due_date") ? "inline-block" : "none")+"'>rem date</button>";
-			elem += "			<button class='todoo_delete'>delete</button>";
-			elem +=	"		</div>";
-			elem +=	"	</div>";
+			tasks = this.model.get("tasks")
+			tasks_count = this.countTasks(tasks);
+			elem = 	"<div class='todoo_info'>";
+			elem += "	<div class='todoo_state "+ (this.model.get("done") ? "checked" : "unchecked") + "'></div>";
+			elem += "	<div class='todoo_date'>"+ (this.model.get("due_date") ? this.model.get("due_date") : "" ) +"</div>";
+			elem += "	<div class='todoo_tasks_count'>"+ ( tasks_count ? tasks_count["not_done"]+"/"+tasks_count["all"] : "" ) +"</div>";
 			elem += "</div>";
+			elem += "<div class='todoo_title'>"+this.model.get("title")+"</div>";
+			elem += "<input type='text' class='todoo_title_edit' value='"+this.model.get("title")+"'>";
+			elem += "<div class='todoo_hidden'>";
+			elem += "	<div class='todoo_note_info'>NOTES</div>";
+			elem += "	<textarea class='todoo_note'>"+this.model.get("note")+"</textarea>";
+			elem += "	<div class='todoo_tasks_info'>TASKS</div>";
+						//render each tasks
+			elem += "	<div class='todoo_tasks'>"
+						tasks_id_count = 0;
+						for(key in tasks){
+							tasks_id_count++;
+			elem += "		<input type='checkbox' id='" + this.model.get("id") + "_task_" + tasks_id_count + "' " + (tasks[key].done ? "checked='checked'" : "") +">";
+			elem += "		<label for='" + this.model.get("id") + "_task_" + tasks_id_count + "'>"+ key + "</label>";
+						}
+			elem += "	</div>"
+			elem += "	<div class='todoo_submenu'>";
+			elem += "		<button class='todoo_change_color'>change color</button>";
+			elem += "		<button class='todoo_add_date'>add date</button>";
+			elem += "		<button class='todoo_remove_date' style='display:"+(this.model.get("due_date") ? "inline-block" : "none")+"'>rem date</button>";
+			elem += "		<button class='todoo_delete'>delete</button>";
+			elem +=	"	</div>";
+			elem +=	"</div>";
 
-			return elem;
+			return this.$el.html(elem);
 		},
 		countTasks: function(tasks){
 			total = 0;
@@ -158,6 +166,9 @@ jQuery(document).ready(function($) {
 			}else{
 				return null;
 			}
+		},
+		test: function(){
+			alert("d");
 		}
 	});
 
