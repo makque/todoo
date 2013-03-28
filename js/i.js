@@ -1,6 +1,6 @@
 // Initialize
 //Stores
-var MAIN_COLORS = new Array( '#999999', '#FF5353', '#FF800D', '#FFBE28', '#339933', '#25A0C5', '#A27AFE', '#FF73B9' );
+var MAIN_COLORS = new Array( '#999999', '#FF5353', '#FF800D', '#F2B426', '#339933', '#25A0C5', '#A27AFE', '#FF73B9' );
 var OPA_COLORS = new Array( '#AAAAAA', '#FF6565', '#FF8D26', '#FFC53E', '#48A348', '#3BAACB', '#AB88FE', '#FF81C0' );
 
 jQuery(document).ready(function($) {
@@ -53,7 +53,7 @@ TodooView = Backbone.View.extend({
 		elem += "	<div class='todoo_tasks_count'>"+ ( tasks_count ? tasks_count["not_done"]+"/"+tasks_count["all"] : "" ) +"</div>";
 		elem += "</div>";
 		elem += "<div class='todoo_title'>"+this.model.get("title")+"</div>";
-		elem += "<input type='text' class='todoo_title_edit' value='"+this.model.get("title")+"'>";
+		elem += "<textarea type='text' class='todoo_title_edit'>"+this.model.get("title")+"</textarea>";
 		elem += "<div class='todoo_hidden'>";
 		elem += "	<div class='todoo_note_info'>NOTES</div>";
 		elem += "	<textarea class='todoo_note'>"+this.model.get("note")+"</textarea>";
@@ -98,17 +98,23 @@ TodooView = Backbone.View.extend({
 		}
 	},
 	edit_title: function(){
+		var h = this.$(".todoo_title").height();
 		this.$el.addClass("edit");
-		this.$(".todoo_title_edit").val(this.model.get("title")).focus();
+		this.$(".todoo_title_edit").val(this.model.get("title")).height(h).focus();
 		//alert('f');
 	},
 	close_edit_title: function(){
-		new_title = this.$(".todoo_title_edit").val().trim();
+		new_title = this.strip( this.$(".todoo_title_edit").val().trim() );
 		if(new_title)
 			this.model.save({"title":new_title});
 		this.$el.removeClass("edit");
-		//this.$(".todoo_title_edit").focus();
-		//alert('f');
+		this.$(".todoo_title_edit").focus();
+	},
+	strip: function(html){
+		var tmp = document.createElement("div");
+		tmp.innerHTML = html;
+		stripped = tmp.textContent||tmp.innerText;
+		return stripped.replace(/\s/g, " ");
 	}
 });
 
