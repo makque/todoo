@@ -13,14 +13,21 @@ body{
 
 /*INHERIT COMMON ATTRIBUTES*/
 body, textarea{
-	font-family: 'Open Sans', Arial, "Times New Roman", serif; 
+	font-family: "Roboto", "Myriad Pro", Arial, serif; 
+}
+
+button, .todoo_title, .todoo_state, .todoo_submenu input{
+	cursor: pointer;
+}
+
+.todoo_info{
+	font-family: Arial, serif; 
 }
 
 button{
 	background-color: #1D1D1D;
 	border: none;
 	color: #eee;
-	cursor: pointer;
 }
 
 header h1, header ul, ul.color_views li, ul.color_views li button{
@@ -45,12 +52,14 @@ header{
 	position: fixed;
 }
 
-#output .todoo_container{
+#output .todoo_container, .todoo_note_info, .todoo_tasks_info, .todoo_tasks{
 	margin-bottom: 24px;
-
 }
 
-textarea:focus{
+.todoo_container .todoo_hidden, .todoo_tasks_info{
+	margin-top: 24px;
+}
+textarea:focus, textarea, input{
 	outline: none;
 	border: none;
 }
@@ -62,15 +71,20 @@ textarea:focus{
 }
 
 .emboss,
-header, button:hover{
+header, button:hover, #output .todoo_container{
 	background-color: #eee;
-	border: solid 1px rgba(50, 50, 50, .2);
+	border: solid 1px rgba(0, 0, 0, .2);
 	box-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
-	color: #1D1D1D;
+	color: rgba(0,0,0,.7);
 }
 
-.dark_border_bot{
-	border-bottom: solid 1px rgba(0, 0, 0, .4);
+.dark-border-bot{
+	border-bottom: solid 1px rgba(0, 0, 0, .2);
+}
+
+.border-radius,
+#output .todoo_container{
+	border-radius: 3px;
 }
 
 /*HIERARCHY*/
@@ -82,7 +96,7 @@ header{
 		font-weight: 300;
 		margin-left: 10px;
 	}
-	ul.color_views{
+	header ul.color_views{
 		margin-left: -55px;
 	}
 		ul.color_views li{
@@ -104,37 +118,57 @@ div#main_wrapper{
 		width: 700px;
 	}
 		#output .todoo_container{
-			border: solid 1px rgba(0,0,0,.2);
-			box-shadow: 1px 1px 1px rgba(0,0,0,.3);
 			max-width: 500px;
-			padding: 15px;
-			text-shadow: 1px 1px 1px rgba(0,0,0,.2);
+			padding: 0 15px 15px 15px;
 		}
 			.todoo_container .todoo_info{
+				color: rgba(50,50,50,.7);
+				font-weight: bold;
 				text-align: left;
+				text-transform: uppercase;
+				margin: 0 -15px 10px;
+				padding: 2px;
 			}
-				.todoo_info .todoo_state{
-					height: 15px;
-					width: 15px;
+				.todoo_info .todoo_state, .todoo_info .todoo_date, .todoo_info .todoo_tasks_count{
 					display: inline-block;
 				}
+				.todoo_info .todoo_state{
+					height: 17px;
+					width: 17px;
+				}
+					.todoo_state.checked{
+						background: url("images/checked.png");
+					}
+					.todoo_state.unchecked{
+						background: url("images/unchecked.png");
+					}
 				.todoo_info .todoo_date{
-					height: 15px;
-					width: 15px;
-					display: inline-block;
+					font-size: .9rem;
+					margin-top: 1px;
+					text-shadow: 1px 1px 1px rgba(210,210,210,.4);
+					vertical-align: top;
+					width: 50%;
 				}
 				.todoo_info .todoo_tasks_count{
-					height: 15px;
-					width: 15px;
-					display: inline-block;
+					background-color: rgba(0,0,0,.2);
+					border: solid 1px rgba(50,50,50,.2);
+					box-shadow: 1px 1px 2px rgba(250,250,250,.3);
+					color: rgba(250,250,250,.3);
+					float: right;
+					font-size: .7rem;
+					padding: 0px 5px 0px 6px;
+					margin: 2px 5px 0 1px;
+					border-radius: 3px;
+					letter-spacing: 2px;
 				}
 
 			.todoo_container .todoo_title, .todoo_container .todoo_title_edit{
 				background-color: transparent;
-				color:inherit;
+				color: inherit;
 				display: block;
 				font-size: 1.6rem;
 				overflow: hidden;
+				text-shadow: 1px 1px 1px rgba(200,200,200,.5);
 			}
 			.todoo_container .todoo_title{
 				display: block;
@@ -153,7 +187,77 @@ div#main_wrapper{
 				}
 			.todoo_container .todoo_hidden{
 				display: none;
-			}			
+			}
+				.todoo_hidden .todoo_note, .todoo_hidden .todoo_tasks{
+					background-color: transparent;
+					letter-spacing: 1px;
+					border-radius: 3px;
+					padding: 15px;
+				}
+				.todoo_hidden .todoo_note{
+					width: 100%;
+					max-width: 100%;
+				}
+				.todoo_hidden .todoo_tasks{
+				}
+					.todoo_tasks input[type='text']{
+						background-color: transparent;
+						border: none;
+						margin-bottom: 10px;
+						padding: 0 0 5px 5px;
+						width: 90%;
+					}
+					.todoo_tasks button.todoo_task_delete_btn{
+						background-color: transparent;
+						color: inherit;
+						border: none;
+						height: 20px;
+						width: 20px;
+						opacity: .4;
+					}
+					.todoo_tasks button.todoo_task_delete_btn:hover{
+						background-color: transparent;
+						box-shadow: none;
+						opacity: 1;
+					}
+				.todoo_hidden .todoo_submenu input{
+					color: transparent;;
+					height: 32px;
+					width: 32px;
+					margin: 0 5px 5px 5px;
+					vertical-align: bottom;
+				}
+				.todoo_hidden .todoo_submenu input:hover{
+					background-color: #ccc;
+				}
+					.todoo_submenu .todoo_add_task{
+						background: url("/images/add_task_btn.png");
+					}
+					.todoo_submenu .todoo_change_color{
+						background: url("/images/change_color_btn.png");
+					}
+					.todoo_submenu .todoo_add_date{
+						background: url("/images/add_date_btn.png");
+					}
+					.todoo_submenu .todoo_remove_date{
+						background: url("/images/remove_date_btn.png");
+					}
+					.todoo_submenu .todoo_delete{
+						background: url("/images/delete_btn.png");
+					}
+			.dialog_color{
+				display: none;
+				background-color: #ccc;
+				width: 530px;
+				margin-left: -15px;
+				margin-bottom: -15px;
+				padding: 5px 0 5px 0;
+				border-bottom-left-radius: 3px;
+				border-bottom-right-radius: 3px;
+			}
+				.dialog_color button{
+					width: 13%;
+				}
 /*
 *{	margin: 0 auto; padding: 0 auto; border: none; text-align: center; }
 
