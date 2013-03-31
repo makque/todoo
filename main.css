@@ -16,7 +16,7 @@ body, textarea{
 	font-family: "Roboto", "Myriad Pro", Arial, serif; 
 }
 
-button, .todoo_title, .todoo_state, .todoo_submenu input{
+button, .todoo_clicker, .todoo_state, .todoo_submenu input{
 	cursor: pointer;
 }
 
@@ -31,25 +31,12 @@ button{
 }
 
 header h1, header ul, ul.color_views li, ul.color_views li button{
-	display: inline;
 	position: relative;
 	vertical-align: bottom;
 }
 
-header, div#main_wrapper, #output .todoo_container .todoo_title_edit{
+div#main_wrapper, #output .todoo_container .todoo_title_edit{
 	text-align: center;
-}
-
-header h1{
-	float: left;
-}
-
-header button#add_todoo, ul.color_views li button{
-	border-radius: 5px;
-}
-
-header{
-	position: fixed;
 }
 
 #output .todoo_container, .todoo_note_info, .todoo_tasks_info, .todoo_tasks{
@@ -65,13 +52,13 @@ textarea:focus, textarea, input{
 }
 
 /*GENERAL CLASSES*/
-.engrave, button{
+.engrave{
 	border: solid 1px rgba(50, 50, 50, .2);
 	box-shadow: 1px 1px 1px rgba(250, 250, 250, .5);
 }
 
 .emboss,
-header, button:hover, #output .todoo_container{
+button:hover, #output .todoo_container{
 	background-color: #eee;
 	border: solid 1px rgba(0, 0, 0, .2);
 	box-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
@@ -89,22 +76,40 @@ header, button:hover, #output .todoo_container{
 
 /*HIERARCHY*/
 header{
-	padding: 10px 0 10px 0;
-	width: 100%;
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+	box-shadow: inset 0px 0px 8px #aaa;
+	padding: 20px 0px 40px 0;
+	width: 130px;
+	position: fixed;
 }
 	header h1{
+		color: #ccc;
 		font-weight: 300;
 		margin-left: 10px;
 	}
 	header ul.color_views{
-		margin-left: -55px;
 	}
 		ul.color_views li{
 			list-style-type: none;
 		}
 			ul.color_views li button{
-				height: 15px;
-				width: 100px;
+				height: 30px;
+				width: 60px;
+			}
+			ul.color_views li button:hover{
+				width: 80px;
+			}
+			ul.color_views li button.color_only{
+				background-color: transparent;
+				font-size: .6rem;
+				height: 30px;
+				letter-spacing: 3px;
+				width: 40px;
+			}
+			ul.color_views li button.color_only:hover{
+				border:none;
+				box-shadow: none;
 			}
 	header button#add_todoo{
 	}
@@ -114,7 +119,7 @@ div#main_wrapper{
 }
 	div#main_wrapper #output{
 		box-shadow: inset 0px 0px 18px rgba(0,0,0,.2);
-		padding: 80px 0 40px 0;
+		padding: 40px 0 40px 0;
 		width: 700px;
 	}
 		#output .todoo_container{
@@ -129,7 +134,7 @@ div#main_wrapper{
 				margin: 0 -15px 10px;
 				padding: 2px;
 			}
-				.todoo_info .todoo_state, .todoo_info .todoo_date, .todoo_info .todoo_tasks_count{
+				.todoo_info .todoo_state, .todoo_date, .todoo_tasks_count{
 					display: inline-block;
 				}
 				.todoo_info .todoo_state{
@@ -142,25 +147,31 @@ div#main_wrapper{
 					.todoo_state.unchecked{
 						background: url("images/unchecked.png");
 					}
-				.todoo_info .todoo_date{
-					font-size: .9rem;
-					margin-top: 1px;
-					text-shadow: 1px 1px 1px rgba(210,210,210,.4);
-					vertical-align: top;
-					width: 50%;
+				.todoo_clicker{
+					background-color: inherit;
+					display: inline;
 				}
-				.todoo_info .todoo_tasks_count{
-					background-color: rgba(0,0,0,.2);
-					border: solid 1px rgba(50,50,50,.2);
-					box-shadow: 1px 1px 2px rgba(250,250,250,.3);
-					color: rgba(250,250,250,.3);
-					float: right;
-					font-size: .7rem;
-					padding: 0px 5px 0px 6px;
-					margin: 2px 5px 0 1px;
-					border-radius: 3px;
-					letter-spacing: 2px;
-				}
+					.todoo_date{
+						color: #eee;
+						font-size: .9rem;
+						height: 18px;
+						margin-top: 1px;
+						text-shadow: 1px 1px 1px rgba(210,210,210,.4);
+						vertical-align: top;
+						width: 86%;
+					}
+					.todoo_tasks_count{
+						background-color: rgba(0,0,0,.2);
+						border: solid 1px rgba(50,50,50,.2);
+						box-shadow: 1px 1px 2px rgba(250,250,250,.3);
+						color: rgba(250,250,250,.3);
+						float: right;
+						font-size: .7rem;
+						padding: 0px 5px 0px 6px;
+						margin: 2px 5px 0 1px;
+						border-radius: 3px;
+						letter-spacing: 2px;
+					}
 
 			.todoo_container .todoo_title, .todoo_container .todoo_title_edit{
 				background-color: transparent;
@@ -183,6 +194,8 @@ div#main_wrapper{
 					display: none;
 				}
 				.todoo_container.edit .todoo_title_edit{
+					background-color: #ddd;
+					box-shadow: inset 0px 0px 3px #333;
 					display: inline-block;
 				}
 			.todoo_container .todoo_hidden{

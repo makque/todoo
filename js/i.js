@@ -1,7 +1,7 @@
 // Initialize
 //Stores
-var MAIN_COLORS = new Array( '#999999', '#FF5353', '#FF800D', '#F2B426', '#339933', '#25A0C5', '#A27AFE', '#FF73B9' );
-var OPA_COLORS = new Array( '#AAAAAA', '#FF6565', '#FF8D26', '#FFC53E', '#48A348', '#3BAACB', '#AB88FE', '#FF81C0' );
+var MAIN_COLORS = new Array( '#999999', '#FF3333', '#FF9900', '#F2B426', '#339933', '#25A0C5', '#A27AFE', '#FF73B9' );
+var OPA_COLORS = new Array( '#AAAAAA', '#FF4848', '#FF8D26', '#FFC53E', '#48A348', '#3BAACB', '#AB88FE', '#FF81C0' );
 
 jQuery(document).ready(function($) {
 
@@ -38,6 +38,14 @@ Todoos = Backbone.Collection.extend({
 		}
 		return notdone_count;
     },
+    remaining_by_color: function(_id){
+    	var remaining = 0;
+		for(i=0; i < this.length; i++){
+			if(this.models[i].get("color") == _id && !this.models[i].get("done"))
+				remaining++;
+		}
+		return remaining;
+    }
 });
 
 todoos = new Todoos;
@@ -48,8 +56,8 @@ TodooView = Backbone.View.extend({
 	className: "todoo_container",
 	events: {
 		"click .todoo_delete": "test",
-		"dblclick .todoo_title": "edit_title",
-		"click .todoo_title": "toggle_hidden",
+		"click .todoo_title": "edit_title",
+		"click .todoo_clicker": "toggle_hidden",
 		"blur .todoo_title_edit": "close_edit_title",
 		"keyup .todoo_note": "update",
 		"click .todoo_state": "toggle_state",
@@ -76,8 +84,10 @@ TodooView = Backbone.View.extend({
 		tasks = this.model.get("tasks")
 		elem = 	"<div class='todoo_info'>";
 		elem += "	<div class='todoo_state "+ (this.model.get("done") ? "checked" : "unchecked") + "'></div>";
-		elem += "	<div class='todoo_date'></div>";
-		elem += "	<div class='todoo_tasks_count'></div>";
+		elem += 	"	<div class='todoo_clicker'>";
+		elem += "		<div class='todoo_date'></div>";
+		elem += "		<div class='todoo_tasks_count'></div>";
+		elem += "	</div>";
 		elem += "</div>";
 		elem += "<div class='todoo_title'>"+this.model.get("title")+"</div>";
 		elem += "<textarea type='text' class='todoo_title_edit'>"+this.model.get("title")+"</textarea>";
@@ -90,9 +100,9 @@ TodooView = Backbone.View.extend({
 					tasks_id_count = 0;
 					for(key in tasks){
 						tasks_id_count++;
-		elem += "		<div class='todoo_task_container' id='task_"+ key +"_"+ this.model.get("id") +"'>";
-		elem += "			<input type='checkbox' value='" + key + "' " + (tasks[key].done ? "checked='checked'" : "") +">";
-		elem += "			<input type='text' value='"+ tasks[key].task + "''><button class='todoo_task_delete_btn' value='"+key+"'>x</button>";
+		elem += "		<div class='todoo_task_container' id='task_"+ tasks[key].id +"_"+ this.model.get("id") +"'>";
+		elem += "			<input type='checkbox' value='" + tasks[key].id + "' " + (tasks[key].done ? "checked='checked'" : "") +">";
+		elem += "			<input type='text' value='"+ tasks[key].task + "''><button class='todoo_task_delete_btn' value='"+tasks[key].id+"'>x</button>";
 		elem += "		</div>";
 					}
 		elem += "	</div>"
@@ -151,12 +161,26 @@ TodooView = Backbone.View.extend({
 			"color":OPA_COLORS[this.model.get("color")]
 		});
 
+		///this.$(".todoo_date").css({ "color": OPA_COLORS[this.model.get("color")] });
+
 		this.$(".todoo_note").css({ "border": "solid 1px "+OPA_COLORS[this.model.get("color")] });
 		this.$(".todoo_tasks").css({ "border": "solid 1px "+OPA_COLORS[this.model.get("color")] });
 		this.$(".todoo_tasks input[type='text']").css("border-bottom", "solid 1px "+MAIN_COLORS[this.model.get("color")] );
 	},
 	countNotDone: function(){
-		document.title = "(" + todoos.done() + ") todoo";
+		if(todoos.done() != 0)
+			document.title = "(" + todoos.done() + ") todoo";
+		else
+			document.title = "todoo";
+
+		//count remaining tasks for each color
+		for(j = 0; j < MAIN_COLORS.length; j++){
+			var color_count = this.get_remaining_by_color(j);
+			$("#cv_"+j).html( color_count !=0 ? color_count : "");
+		}
+	},
+	get_remaining_by_color: function(_i){
+		return todoos.remaining_by_color(_i);
 	},
 	countTasks: function(){
 		tasks = this.model.get("tasks");
@@ -226,27 +250,43 @@ TodooView = Backbone.View.extend({
 	},
 	toggle_task: function(e){ 
 		tasks = this.model.get("tasks");
-		tasks[e.currentTarget.value].done = !tasks[e.currentTarget.value].done;
+		for(i=0; i<tasks.length; i++){
+ 			if(tasks[i].id == e.currentTarget.value){
+     			tasks[i].done = !tasks[i].done;
+     			break;
+     		}
+		}
 		this.model.save();
 		this.countTasks();
 	},
 	save_task: function(e){
 		tasks = this.model.get("tasks");
 		id = e.currentTarget.previousElementSibling.value;
-		tasks[id].task = e.currentTarget.value;
+		for(i=0; i<tasks.length; i++){
+ 			if(tasks[i].id == id){
+     			tasks[i].task = e.currentTarget.value;
+     			break;
+     		}
+		}
 		this.model.save();
 		this.countTasks();
 	},
 	delete_task: function(e){ 
 		tasks = this.model.get("tasks");
-		tasks.splice(e.currentTarget.value, 1);
+
+		for(i=0; i<tasks.length; i++){
+ 			if(tasks[i].id == e.currentTarget.value){
+     			tasks.splice(i, 1);
+     			break;
+     		}
+		}
 		this.$( "#task_"+ e.currentTarget.value + "_" + this.model.get("id")).remove();
 		this.model.save();
 		this.countTasks();
 	},
 	add_task: function(e){
-		key = this.model.get("tasks").length;
-		this.model.get("tasks").push({"task":"New task.","done":false});
+		key = new Date().getTime();
+		this.model.get("tasks").push({"id":key,"task":"New task.","done":false});
 
 		elem =  "<div class='todoo_task_container' id='task_"+ key +"_"+ this.model.get("id") +"'>";
 		elem += "	<input type='checkbox' value='" + key + "' >";
@@ -287,7 +327,7 @@ AppView = Backbone.View.extend({
 		this.listenTo(todoos, 'add', this.addOne);
 		this.listenTo(todoos, 'reset', this.addAll);
 		this.listenTo(todoos, 'all', this.render);
-
+		//$('header').scrollToFixed();
 		todoos.fetch();
 	},
 	setView: function(e){ 
@@ -319,5 +359,6 @@ AppView = Backbone.View.extend({
 
 //init the app
 appView = new AppView;
+$('header').css("left", $('#output').offset().left+700 );
 
 });

@@ -16,6 +16,11 @@
 
     <!--hammer.js - for touch screen-->
     <script src="js/lib/hammer.js"></script>
+
+    <!--jquery-scrolltofixed-min.js - for fixed on scroll-->
+    <script src="js/lib/jquery-scrolltofixed-min.js"></script>
+
+
     
     <!--<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
@@ -32,13 +37,20 @@
     <header>
         <h1>todoo</h1>
         <ul class="color_views">
-            <li><button id="cv_0"></button></li>
-            <li><button id="cv_1"></button></li>
-            <li><button id="cv_2"></button></li>
-            <li><button id="cv_3"></button></li>
-            <li><button id="cv_4"></button></li>
-            <li><button id="cv_5"></button></li>
-            <li><button id="cv_6"></button></li>
+            <li><button value="0" id="cv_0"></button>
+                <button value="0" class="color_only" id="cvo_0">ONLY</button></li>
+            <li><button value="1" id="cv_1"></button>
+                <button value="1" class="color_only" id="cvo_1">ONLY</button></li>
+            <li><button value="2" id="cv_2"></button>
+                <button value="2" class="color_only" id="cvo_2">ONLY</button></li>
+            <li><button value="3" id="cv_3"></button>
+                <button value="3" class="color_only" id="cvo_3">ONLY</button></li>
+            <li><button value="4" id="cv_4"></button>
+                <button value="4" class="color_only" id="cvo_4">ONLY</button></li>
+            <li><button value="5" id="cv_5"></button>
+                <button value="5" class="color_only" id="cvo_5">ONLY</button></li>
+            <li><button value="6" id="cv_6"></button>
+                <button value="6" class="color_only" id="cvo_6">ONLY</button></li>
             <li><button id="add_todoo" class="engrave" title="add a todoo">+</button></li>
         </ul>
     </header>
