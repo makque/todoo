@@ -1,13 +1,3 @@
-//LOCAL STORAGE
-//COLLECTION
-jQuery(document).ready(function($) {
-
-
-
-});
-
-
-/*
 //IndexedDB
 var todoo = {};
 var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB;
@@ -108,7 +98,7 @@ todoo.indexedDB.getAllTodoItems = function() {
 		}              
 		//checks whether it is an event or the bg object
 		if(result.value.bg == null){
-			renderTodo(result.value);
+			migrate_to_localStorage(result.value);
 		}
 		else if(result.value.bg != null){
 			//renderBG(result.value);
@@ -116,8 +106,9 @@ todoo.indexedDB.getAllTodoItems = function() {
 						
 		result.continue();
 	};
-
-	document.getElementById('right_container').innerHTML = "";
+	SETTINGS = new Array({"view_color": VIEW_COLOR}, {"db_version":1});
+	localStorage.setItem('todoo-settings', JSON.stringify(SETTINGS));
+	//document.getElementById('right_container').innerHTML = "";
 	cursorRequest.onerror = todoo.indexedDB.onerror;
 };
 
@@ -157,5 +148,3 @@ todoo.indexedDB.countToday = function() {
 	document.getElementById('right_container').innerHTML = "";
 	cursorRequest.onerror = todoo.indexedDB.onerror;
 };
-
-*/

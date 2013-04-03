@@ -97,7 +97,7 @@ header{
 				height: 30px;
 				width: 60px;
 			}
-			ul.color_views li button:hover{
+			ul.color_views li button:hover, ul.color_views li button.set{
 				width: 80px;
 			}
 			ul.color_views li button.color_only{
@@ -121,6 +121,7 @@ div#main_wrapper{
 		box-shadow: inset 0px 0px 18px rgba(0,0,0,.2);
 		padding: 40px 0 40px 0;
 		width: 700px;
+		min-height: 100%;
 	}
 		#output .todoo_container{
 			max-width: 500px;

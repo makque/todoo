@@ -2,9 +2,10 @@
 //Stores
 var MAIN_COLORS = new Array( '#999999', '#FF3333', '#FF9900', '#F2B426', '#339933', '#25A0C5', '#A27AFE', '#FF73B9' );
 var OPA_COLORS = new Array( '#AAAAAA', '#FF4848', '#FF8D26', '#FFC53E', '#48A348', '#3BAACB', '#AB88FE', '#FF81C0' );
+var VIEW_COLOR = new Array(1,1,1,1,1,1,1);
+var SETTINGS = new Array({"view_color": VIEW_COLOR}, {"db_version":0});
 
 jQuery(document).ready(function($) {
-
 //MODEL
 Todoo = Backbone.Model.extend({
 	defaults: {
@@ -21,6 +22,7 @@ Todoo = Backbone.Model.extend({
 		//alert("todoo created.");
 	},
 	toggle: function () {
+		
 		this.save( { done: !this.get("done") } );
 	}
 });
@@ -55,7 +57,7 @@ current_id = 0;
 TodooView = Backbone.View.extend({
 	className: "todoo_container",
 	events: {
-		"click .todoo_delete": "test",
+		"click .todoo_delete": "delete_todoo",
 		"click .todoo_title": "edit_title",
 		"click .todoo_clicker": "toggle_hidden",
 		"blur .todoo_title_edit": "close_edit_title",
@@ -70,7 +72,6 @@ TodooView = Backbone.View.extend({
 		"click .todoo_change_color": function(){this.$( "#dialog_color_"+this.model.get("id") ).stop().slideToggle()},
 		"click .dialog_color button": function(e){
 			c = this.model.get("color");
-			//console.log( e.currentTarget.value);
 			c = e.currentTarget.value;
 			this.model.save({color: c});
 			this.render_color();
@@ -123,6 +124,11 @@ TodooView = Backbone.View.extend({
 		elem += "		<button class='cp_6'></button>";
 		elem += "	</div>";
 		elem +=	"</div>";
+		//show by color
+		if(VIEW_COLOR[this.model.get("color")] == false)
+			this.$el.hide();
+		else
+			this.$el.show();
 		this.$el.html(elem);
 		this.render_color();
 		this.$("input.todoo_add_date").datepicker({ minDate: new Date() });
@@ -180,6 +186,7 @@ TodooView = Backbone.View.extend({
 		}
 	},
 	get_remaining_by_color: function(_i){
+
 		return todoos.remaining_by_color(_i);
 	},
 	countTasks: function(){
@@ -306,6 +313,14 @@ TodooView = Backbone.View.extend({
 		due_date = "";
 		this.model.save({due_date: due_date});
 		this.format_date();
+	},
+	delete_todoo: function(){
+		var x;
+		var r=confirm("Are you sure you want to delete this?");
+		if (r==true){
+			$("#"+this.model.get("id")).slideUp();
+			this.model.destroy();
+		}
 	}
 });
 
@@ -314,14 +329,17 @@ AppView = Backbone.View.extend({
 	el: "body",
 	events: {
 		"click .color_views li button" : "setView",
-		"dblclick .color_views li button" : "setView_only",
 		"click #add_todoo" : "add"
 	},
 	initialize: function(){
+		//get settings
+		this.get_settings();
 		//init buttons
 		//init color_views & color_picker buttons
 		for(i = 0; MAIN_COLORS.length > i; i++){
 			$("#cv_"+i).css('background-color', MAIN_COLORS[i]).val(i);
+			if(VIEW_COLOR[i] == true)
+				$("#cv_"+i).addClass("set");
 		}
 
 		this.listenTo(todoos, 'add', this.addOne);
@@ -330,14 +348,25 @@ AppView = Backbone.View.extend({
 		//$('header').scrollToFixed();
 		todoos.fetch();
 	},
-	setView: function(e){ 
-
-	},
-	setView_only: function(e){ 
-
+	setView: function(e){
+		if(e.currentTarget.className == "color_only"){
+			for(var i = 0; i < VIEW_COLOR.length; i++)
+				VIEW_COLOR[i] = false;
+		}
+		VIEW_COLOR[e.currentTarget.value] = !VIEW_COLOR[e.currentTarget.value];
+		this.save_settings();
 	},
 	add: function(){
-		todoos.create();
+		var color_id_in_view = 0;
+		//return the color that is in view
+		for(var i = 0; i < VIEW_COLOR.length; i++){
+			if(VIEW_COLOR[i] == true){
+				color_id_in_view = i;
+				break;
+			}
+		}
+
+		todoos.create({color:color_id_in_view});
 	},
 	addAll: function(){
 		todoos.each(this.addOne, this);
@@ -354,6 +383,32 @@ AppView = Backbone.View.extend({
 			if(!todoos[key].done)
 				this.$("cv_"+todoos[key].color).addClass("test");//.html( old_value+1 );
 		}
+	},
+	get_settings: function(){
+		//SET COLOR_VIEW
+		if(localStorage.getItem('todoo-settings')){
+			SETTINGS = JSON.parse(localStorage.getItem('todoo-settings'));
+			if(SETTINGS[1].db_version == 0){
+				this.get_indexedDB();
+			}
+		}
+		else{
+			this.save_settings();
+		}
+
+		//get settings
+		VIEW_COLOR = SETTINGS[0].view_color;
+	},
+	save_settings: function(){
+		//setting for color views
+		SETTINGS["color_view"] = VIEW_COLOR;
+		localStorage.setItem('todoo-settings', JSON.stringify(SETTINGS));
+		location.reload();
+	},
+	get_indexedDB: function(){
+		//open db
+		console.log("attempting to migrate your old database to the local storage...");
+		todoo.indexedDB.open();
 	}
 });
 
@@ -362,3 +417,18 @@ appView = new AppView;
 $('header').css("left", $('#output').offset().left+700 );
 
 });
+
+function migrate_to_localStorage(row){
+	var new_todoo = new Todoo({
+		id: row.timeStamp,
+		title: row.title,
+		note: row.note,
+		tasks: [],
+		color: 0,
+		due_date: row.dueDate,
+		done: row.isActive
+	});
+
+	todoos.create(new_todoo);
+	console.log("todoo: "+ row.title + " has been migrated.");
+}
