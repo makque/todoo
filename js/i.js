@@ -182,7 +182,7 @@ TodooView = Backbone.View.extend({
 		//count remaining tasks for each color
 		for(j = 0; j < MAIN_COLORS.length; j++){
 			var color_count = this.get_remaining_by_color(j);
-			$("#cv_"+j).html( color_count !=0 ? color_count : "");
+			$("#cv_"+j).html( color_count !=0 ? color_count : "0");
 		}
 	},
 	get_remaining_by_color: function(_i){
@@ -222,6 +222,7 @@ TodooView = Backbone.View.extend({
 		this.$(".todoo_title").html(this.model.get("title"));
 	},
 	toggle_hidden: function(){
+		//$("body").css('background-color', MAIN_COLORS[this.model.get("color")]);
 		this.$(".todoo_hidden").stop().slideToggle();
 		this.render_color();
 		this.autosize_note();
