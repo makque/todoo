@@ -1,0 +1,82 @@
+*{margin:0;padding:0;}
+body{background-color:#eee;color:#eee;font-size:62.5%;height:100%;width:100%;}
+body, textarea{font-family:"Roboto", "Myriad Pro", Arial, sans-serif;}
+button, .todoo_clicker, .todoo_state, .todoo_submenu input{cursor:pointer;}
+header, section, aside{display:inline-block;vertical-align:top;}
+header{background-color:#ccc;height:5%;width:100%;min-height:40px;}
+aside{background-color:#fcd358;min-width:600px;width:30%;}
+::-webkit-input-placeholder{color:rgba(0, 0, 0, .3);}
+input::selection{background:rgba(0, 0, 0, .3);color:black;}
+textarea:focus{outline:none;background-color:rgba(0, 0, 0, .1) !important;}
+.row{display:block;}
+.one, .two, .three, .four, .five,
+.six, .seven, .eight, .nine, .ten,
+.half, .one-half, .two-halves, .three-halves,
+.four-halves, .five-halves, .six-halves,
+.seven-halves, .eight-halves, .nine-halves,
+.ten-halves{display:inline-block;}
+.half{width:5%;}
+.one{width:10%;}
+.one-half{width:15%;}
+.two{width:20%;}
+.two-halves{width:25%;}
+.three{width:30%;}
+.three-halves{width:35%;}
+.four{width:40%;}
+.four-halves{width:45%;}
+.five{width:50%;}
+.five-halves{width:55%;}
+.six{width:60%;}
+.six-halves{width:65%;}
+.seven{width:70%;}
+.seven-halves{width:75%;}
+.eight{width:80%;}
+.eight-halves{width:85%;}
+.nine{width:90%;}
+.nine-halves{width:95%;}
+.ten{width:100%;}
+.center,
+body{text-align:center;}
+.left,
+header, .color-picker{text-align:left;}
+.right{text-align:right;}
+.float-right,
+.color-only{float:right;}
+.inline-block{display:inline-block;}
+.margin-ten,
+section, aside{margin:10px;}
+.button,
+button{cursor:pointer;background-color:#1D1D1D;border:none;border-radius:3px;color:#eee;padding:5px;}
+.color-picker{border-radius:0px;height:12.5%;width:40px;}
+.color-picker:hover{width:50px;}
+.bottom-space,
+#details .title, #details .notes{border-bottom:1px solid rgba(0, 0, 0, .1);padding-bottom:14px;margin-bottom:14px;}
+.top-space,
+#details .notes .content, #details .tasks .content{margin-top:14px;}
+header .title{font-size:1rem;margin-bottom:14px;}
+header .title div{height:100%;}
+.color-views-wrapper{height:95%;position:absolute;margin:0 !important;padding:0 !important;left:0;}
+.color-views{background-color:rgba(0,0,0,.1);}
+.color-views button.color-only{display:none;}
+.color-views li:hover button.color-only{display:inline-block;background-color:transparent;}
+#main-wrapper{min-width:500px;width:35%;}
+#output{padding:10px 0 10px 0;}
+.summary{border:1px solid transparent;margin:10px 0 10px 0;padding:10px;}
+.summary:hover{border-color:rgba(0, 0, 0, .3);;}
+.summary .checkbox, .summary .info, .summary .due{display:inline-block;vertical-align:middle;}
+.summary .checkbox{height:28px;}
+.summary .info{color:#222;font-size:1.2rem;font-weight:bold;letter-spacing:2px;}
+.summary .due{color:rgba(0, 0, 0, .6);font-family:Arial, sans-serif;font-size:.9rem;}
+#details{padding:20px 30px 20px 30px;}
+#details .title{color:rgba(0, 0, 0, .6);font-size:2.2rem;}
+#details .notes .header,
+#details .tasks .header{color:rgba(0, 0, 0, .3);font-size:1.4rem;text-transform:uppercase;}
+#details .notes .content,
+#details .tasks .content{color:rgba(0, 0, 0, .6);font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;font-size:1rem;line-height:1.4rem;}
+#details .notes .content{background-color:transparent;border:none;max-width:100%;padding:20px;height:800px;}
+#details .tasks .content{}
+#details .tasks .content .task{color:rgba(0, 0, 0, .6);border-bottom:1px solid rgba(0, 0, 0, .1);padding-bottom:10px;}
+.red{background-color:red;}
+.blue{background-color:blue;}
+.green{background-color:green;}
+.yellow{background-color:yellow;}
