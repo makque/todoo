@@ -1,9 +1,9 @@
 *{
-	margin: 0 auto; 
+	margin: 0; 
 	padding: 0; 
 }
 
-body{
+body {
 	background-color: #eee;
 	color: #eee;
 	font-size: 62.5%;
@@ -12,407 +12,257 @@ body{
 }
 
 /*INHERIT COMMON ATTRIBUTES*/
-body, textarea{
-	font-family: "Roboto", "Myriad Pro", Arial, serif; 
+body, textarea {
+	font-family: "Roboto", "Myriad Pro", Arial, sans-serif; 
 }
 
-button, .todoo_clicker, .todoo_state, .todoo_submenu input{
+button, .todoo_clicker, .todoo_state, .todoo_submenu input {
 	cursor: pointer;
 }
 
-.todoo_info{
-	font-family: Arial, serif; 
+header, section, aside {
+	display: inline-block;
+	vertical-align: top;
 }
 
-button{
+header {
+	background-color: #ccc;
+	height: 5%;
+	width: 100%;
+	min-height: 40px;
+}
+
+aside {
+	background-color: #fcd358;
+	min-width: 600px;
+	width: 30%;
+}
+
+::-webkit-input-placeholder { color: rgba(0, 0, 0, .3); }
+
+input::selection {
+	background: rgba(0, 0, 0, .3);
+	color: black;
+}
+
+textarea:focus {
+	outline: none;
+	background-color: rgba(0, 0, 0, .1) !important;
+}
+
+/* UI */
+.row {
+	display: block;
+}
+
+.one, .two, .three, .four, .five,
+.six, .seven, .eight, .nine, .ten,
+.half, .one-half, .two-halves, .three-halves, 
+.four-halves, .five-halves, .six-halves,
+.seven-halves, .eight-halves, .nine-halves, 
+.ten-halves {
+	display: inline-block;
+}
+
+.half			{ width:   5%; }
+.one 			{ width:  10%; }
+.one-half 		{ width:  15%; }
+.two 			{ width:  20%; }
+.two-halves		{ width:  25%; }
+.three 			{ width:  30%; }
+.three-halves	{ width:  35%; }
+.four 			{ width:  40%; }
+.four-halves	{ width:  45%; }
+.five 			{ width:  50%; }
+.five-halves	{ width:  55%; }
+.six 			{ width:  60%; }
+.six-halves		{ width:  65%; }
+.seven 			{ width:  70%; }
+.seven-halves	{ width:  75%; }
+.eight 			{ width:  80%; }
+.eight-halves	{ width:  85%; }
+.nine 			{ width:  90%; }
+.nine-halves	{ width:  95%; }
+.ten 			{ width: 100%; }
+
+/*INHERIT CLASSES*/
+.center,
+body
+{
+	text-align: center;
+}
+
+.left,
+header, .color-picker {
+	text-align: left;
+}
+
+.right {
+	text-align: right;
+}
+
+.float-right,
+.color-only {
+	float: right;
+}
+
+.inline-block {
+	display: inline-block;
+}
+
+.margin-ten,
+section, aside {
+	margin: 10px;
+}
+
+.button,
+button {
+	cursor: pointer;
 	background-color: #1D1D1D;
 	border: none;
-	color: #eee;
-}
-
-header h1, header ul, ul.color_views li, ul.color_views li button{
-	position: relative;
-	vertical-align: bottom;
-}
-
-div#main_wrapper, #output .todoo_container .todoo_title_edit{
-	text-align: center;
-}
-
-#output .todoo_container, .todoo_note_info, .todoo_tasks_info, .todoo_tasks{
-	margin-bottom: 24px;
-}
-
-.todoo_container .todoo_hidden, .todoo_tasks_info{
-	margin-top: 24px;
-}
-textarea:focus, textarea, input{
-	outline: none;
-	border: none;
-}
-
-/*GENERAL CLASSES*/
-.engrave{
-	border: solid 1px rgba(50, 50, 50, .2);
-	box-shadow: 1px 1px 1px rgba(250, 250, 250, .5);
-}
-
-.emboss,
-button:hover, #output .todoo_container{
-	background-color: #eee;
-	border: solid 1px rgba(0, 0, 0, .2);
-	box-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
-	color: rgba(0,0,0,.7);
-}
-
-.dark-border-bot{
-	border-bottom: solid 1px rgba(0, 0, 0, .2);
-}
-
-.border-radius,
-#output .todoo_container{
 	border-radius: 3px;
+	color: #eee;
+	padding: 5px;
 }
 
-/*HIERARCHY*/
-header{
-	border-bottom-right-radius: 5px;
-	border-top-right-radius: 5px;
-	/*box-shadow: 0px 0px 8px #aaa;*/
-	margin-left: 20px;
-	padding: 20px 0px 40px 0;
-	position: fixed;
+.color-picker {
+	border-radius: 0px;
+	height: 12.5%;
+	width: 40px;
 }
-	header h1{
-		color: #ccc;
-		font-weight: 300;
-		margin-left: 10px;
+
+.color-picker:hover {
+	width: 50px;
+}
+
+.bottom-space,
+#details .title, #details .notes {
+	border-bottom: 1px solid rgba(0, 0, 0, .1);
+	padding-bottom: 14px;
+	margin-bottom: 14px;
+}
+
+.top-space,
+#details .notes .content, #details .tasks .content {
+	margin-top: 14px;
+
+}
+
+/*REFERENCE CLASSES*/
+header .title {
+	font-size: 1rem;
+	margin-bottom: 14px;
+}
+
+	header .title div{
+		height: 100%;
+	}	
+
+.color-views-wrapper {
+	height: 95%;
+	position: absolute;
+	margin: 0 !important;
+	padding: 0 !important;
+	left: 0;
+}
+
+	.color-views {
+		background-color: rgba(0,0,0,.1);
 	}
-	header ul.color_views{
+
+	.color-views button.color-only {
+		display: none;
 	}
-		ul.color_views li{
-			list-style-type: none;
+
+	.color-views li:hover button.color-only {
+		display: inline-block;
+		background-color: transparent;
+	}
+
+#main-wrapper {
+	min-width: 500px;
+	width: 35%;
+}
+
+	#output {
+		padding: 10px 0 10px 0;
+	}
+
+	.summary {
+		border: 1px solid transparent;
+		margin: 10px 0 10px 0;
+		padding: 10px;
+	}
+
+	.summary:hover {
+		border-color: rgba(0, 0, 0, .3);;
+	}
+
+		.summary .checkbox, .summary .info, .summary .due {
+			display: inline-block;
+			vertical-align: middle;
 		}
-			ul.color_views li button{
-				border-radius: 5px;
-				box-shadow: inset 0px 0px 5px rgba(0,0,0,.4);
-				height: 40px;
-				margin: 5px 0 5px 5px;
-				opacity: .9;
-				width: 40px;
-			}
-			ul.color_views li button:hover, ul.color_views li button.set{
-				box-shadow: 1px 1px 3px rgba(0,0,0,.9);
-				border-bottom: solid 3px rgba(0,0,0,.3);
-				color: #1D1D1D;
-				font-weight: bold;
-				opacity: 1;
-				width: 40px;
-			}
-			ul.color_views li button.color_only{
-				background-color: transparent;
-				box-shadow: none;
-				font-size: .6rem;
-				height: 30px;
-				letter-spacing: 3px;
-				width: 40px;
-			}
-			ul.color_views li button.color_only:hover{
-				border:none;
-				box-shadow: none;
-			}
-	header button#add_todoo{
-		opacity: 1;
-	}
 
-div#main_wrapper{
-
-}
-	div#main_wrapper #output{
-		box-shadow: inset 0px 0px 18px rgba(0,0,0,.2);
-		padding: 40px 0 40px 0;
-		width: 700px;
-		min-height: 100%;
-	}
-		#output .todoo_container{
-			max-width: 500px;
-			padding: 0 15px 15px 15px;
+		.summary .checkbox {
+			height: 28px;
 		}
-			.todoo_container .todoo_info{
-				color: rgba(50,50,50,.7);
-				font-weight: bold;
-				text-align: left;
-				text-transform: uppercase;
-				margin: 0 -15px 10px;
-				padding: 2px;
-			}
-				.todoo_info .todoo_state, .todoo_date, .todoo_tasks_count{
-					display: inline-block;
-				}
-				.todoo_info .todoo_state{
-					height: 17px;
-					width: 17px;
-				}
-					.todoo_state.checked{
-						background: url("images/checked.png");
-					}
-					.todoo_state.unchecked{
-						background: url("images/unchecked.png");
-					}
-				.todoo_clicker{
-					background-color: inherit;
-					display: inline;
-				}
-					.todoo_date{
-						color: #eee;
-						font-size: .9rem;
-						height: 18px;
-						margin-top: 1px;
-						text-shadow: 1px 1px 1px rgba(210,210,210,.4);
-						vertical-align: top;
-						width: 86%;
-					}
-					.todoo_tasks_count{
-						background-color: rgba(0,0,0,.2);
-						border: solid 1px rgba(50,50,50,.2);
-						box-shadow: 1px 1px 2px rgba(250,250,250,.3);
-						color: rgba(250,250,250,.3);
-						float: right;
-						font-size: .7rem;
-						padding: 0px 5px 0px 6px;
-						margin: 2px 5px 0 1px;
-						border-radius: 3px;
-						letter-spacing: 2px;
-					}
 
-			.todoo_container .todoo_title, .todoo_container .todoo_title_edit{
-				background-color: transparent;
-				color: inherit;
-				display: block;
-				font-size: 1.6rem;
-				overflow: hidden;
-				text-shadow: 1px 1px 1px rgba(200,200,200,.5);
-			}
-			.todoo_container .todoo_title{
-				display: block;
-			}
-			.todoo_container .todoo_title_edit{
-				display: none;
-				max-width: 100%;
-				width: 100%;
-			}
-				/*EDIT MODE*/
-				.todoo_container.edit .todoo_title{
-					display: none;
-				}
-				.todoo_container.edit .todoo_title_edit{
-					background-color: #ddd;
-					box-shadow: inset 0px 0px 3px #333;
-					display: inline-block;
-				}
-			.todoo_container .todoo_hidden{
-				display: none;
-			}
-				.todoo_hidden .todoo_note, .todoo_hidden .todoo_tasks{
-					background-color: transparent;
-					letter-spacing: 1px;
-					border-radius: 3px;
-					padding: 15px;
-				}
-				.todoo_hidden .todoo_note{
-					width: 100%;
-					max-width: 100%;
-				}
-				.todoo_hidden .todoo_tasks{
-				}
-					.todoo_tasks input[type='text']{
-						background-color: transparent;
-						border: none;
-						margin-bottom: 10px;
-						padding: 0 0 5px 5px;
-						width: 90%;
-					}
-					.todoo_tasks button.todoo_task_delete_btn{
-						background-color: transparent;
-						color: inherit;
-						border: none;
-						height: 20px;
-						width: 20px;
-						opacity: .4;
-					}
-					.todoo_tasks button.todoo_task_delete_btn:hover{
-						background-color: transparent;
-						box-shadow: none;
-						opacity: 1;
-					}
-				.todoo_hidden .todoo_submenu input{
-					color: transparent;;
-					height: 32px;
-					width: 32px;
-					margin: 0 5px 5px 5px;
-					vertical-align: bottom;
-				}
-				.todoo_hidden .todoo_submenu input:hover{
-					background-color: #ccc;
-				}
-					.todoo_submenu .todoo_add_task{
-						background: url("/images/add_task_btn.png");
-					}
-					.todoo_submenu .todoo_change_color{
-						background: url("/images/change_color_btn.png");
-					}
-					.todoo_submenu .todoo_add_date{
-						background: url("/images/add_date_btn.png");
-					}
-					.todoo_submenu .todoo_remove_date{
-						background: url("/images/remove_date_btn.png");
-					}
-					.todoo_submenu .todoo_delete{
-						background: url("/images/delete_btn.png");
-					}
-			.dialog_color{
-				display: none;
-				background-color: #ccc;
-				width: 530px;
-				margin-left: -15px;
-				margin-bottom: -15px;
-				padding: 5px 0 5px 0;
-				border-bottom-left-radius: 3px;
-				border-bottom-right-radius: 3px;
-			}
-				.dialog_color button{
-					width: 13%;
-				}
-/*
-*{	margin: 0 auto; padding: 0 auto; border: none; text-align: center; }
+		.summary .info {
+			color: #222;
+			font-size: 1.2rem;
+			font-weight: bold;
+			letter-spacing: 2px;
+		}
 
-::-webkit-scrollbar { width: 10px; background-color: #eee; }
-::-webkit-scrollbar-thumb { background-color: #999;}
+		.summary .due {
+			color: rgba(0, 0, 0, .6);
+			font-family: Arial, sans-serif;
+			font-size: .9rem;
+		}
 
-textarea{ font-family: 'Open Sans', Arial, "Times New Roman", serif; color: inherit;
-			padding: 0px 10px 10px 10px; margin: 0; border: 0; font-size: 1.2rem; resize: none; }
-textarea:focus{ outline: none; }
-textarea::-webkit-input-placeholder { color: #333; }
-textarea:-moz-placeholder { color: #333; }
-input::-webkit-input-placeholder { color: #333; }
-input:-moz-placeholder { color: #333; }
-
-textarea::-webkit-scrollbar, #add_container::-webkit-scrollbar { width: 10px; background-color: transparent; }
-textarea::-webkit-scrollbar-thumb, #add_container::-webkit-scrollbar-thumb { -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,0.4); background-color: transparent; width: 20px;}
-
-.hide{ display: none; }
-
-body{	/*background: url(bg/TorontoBW3X.jpg) repeat center center fixed; -webkit-background-size: cover;
-		height: 100%; width: 100%; background-color: #eee; color: white;
-		font-family: 'Open Sans', Arial, "Times New Roman", serif; font-size: 62.5%; }
-		
-#main_wrapper{	height: 91%; width: 1000px; font-size: 1.2rem; }
-
-input{ cursor: pointer; border-style: none; vertical-align: top; text-decoration:none; }
-#color_picker_container{	width: inherit; vertical-align: top; padding: 0 0 0 100px; position: fixed; z-index: 2; }
-.color_picker{ width: 100px; height: 10px; float: left; cursor: pointer; text-align: right; } 
-.color_picker:hover{ opacity: .8; }
-.color_only{ height: 20px; color: #eee; font-size: .5rem; text-transform: uppercase; float: left; display: none; }
-.color_only:hover{ text-shadow: 1px 2px 1px #333; opacity: .8; }
-#divider{	width: inherit; height: 80px; position: fixed; z-index: 1; }
-
-#main_container{	width: inherit; height: 100%; padding-top: 80px; }
-#left_container, #main_divider, #right_container { float: left; }
-
-/*#left_container{ width: 300px; text-align: right; position: fixed; z-index: 1; }
-#left_container{ width: 300px; text-align: right; }
-	details summary::-webkit-details-marker { display:none; }
-	summary{ background-color: #aaa; color: #fff; padding: 0 10px 0 0; cursor: pointer; text-align: right; }
-	summary:focus{ outline: none; }
-	#span_header:hover{ text-shadow: 0px 2px 3px #000; color: #eee; }
-	#notification{ font-size: .9em; color: #222; background-color: #ccc; padding: 10px 10px 10px 10px; }
-	#no_notif{ font-weight: bold; display: inline; width: 50px; background-color: inherit; font-size: 1.2em; cursor: pointer; }
-	#no_notif:hover{ text-shadow: 0px 2px 3px #000; color: #eee; }
-	.details_container{ background-color: #ccc; padding: 0 10px 10px 10px; }
-	
-		#menu{ margin: 0 0 10px 0; }
-		.btn{	height: 50px; width: 50px; margin: 0; cursor: pointer; }
-		#options{ background: url('images/options.png') #ccc no-repeat center; }
-			#options:hover{ background-image: url('images/options_hover.png'); }
-		#all{ background: url('images/all.png') #ccc no-repeat center; }
-			#all:hover{ background-image: url('images/all_hover.png'); }
-		#help{ background: url('images/help.png') #ccc no-repeat center; }
-			#help:hover{ background-image: url('images/help_hover.png'); }
-		#add{ background: url('images/add.png') #ccc no-repeat center; }
-			#add:hover{ background-image: url('images/add_hover.png'); }
-		#done{ background: url('images/done.png') #ccc no-repeat center; }
-			#done:hover{ background-image: url('images/done_hover.png'); }
-		#hide_done{ background: url('images/hide_done.png') #ccc no-repeat center; }
-			#hide_done:hover{ background-image: url('images/hide_done_hover.png'); }
-			
-		#add_todoo{ color: white; padding: 0px 0 0 0 ;}
-			#add_container{ height: 620px; margin: 0 auto; padding: 10px 10px 10px 10px; overflow: auto; }
-			#add_color_picker_container{ float: left; }
-				.add_color_picker{ float:left; width: 35px; }
-			#txt_todoo{ width: 200px; height: 100px; margin: 10px 0 0 0; background-color: #aaa; color: #000; font-weight: bold; }
-			#txt_note{ 	width: 220px; height: 420px; text-align: left; margin: 5px 0 0 0; background-color: #aaa; font-size: .87em; 
-						background: url('bg/line.png') transparent repeat top;color: #000; }
-			.datepicker{ font-family: 'Open Sans', Cambria, "Times New Roman", serif; border: 0;  width: 150px; 
-							margin: 0; padding: 5px 10px 5px 10px; display: inline; }
-			.btn_clearDate { font-family: 'Open Sans', Cambria, "Times New Roman", serif; font-size: .8rem; display: none; width: 30px;
-								margin: 0; padding: 5px 10px 5px 10px; text-decoration: none; border: 0px; background-color: #333; color: #333; }
-			.btn_clearDate:hover{ background-color: #1D1D1D; }
-			.subbtn { float: right; width: 50px; height: 25px; min-width: 100px; margin: 10px 10px 10px 10px; text-decoration: none; border: 0px;    		
-						background-color: #333; }
-			.subbtn:hover{ background-color: #1D1D1D; }
-			
-#output{ padding-left: 300px; }
-#main_divider{ width: 10px; /*background: url('images/divider.png') transparent; height: 100%; position: fixed; }
-#right_container{ width: 690px; height: auto; padding-left: 10px;  }
-
-/*DISPLAY
-.margin_todoo{
-	margin: 0px 0px 20px 0px;
+#details {
+	padding: 20px 30px 20px 30px;
 }
-.todoo_datepicker{
-	font-family: 'Open Sans', Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-	border: 0;
-	font-size: .8rem;
-	width: 300px;
-	cursor: pointer;
-	margin: 0;
-	padding: 5px 10px 5px 10px;
-	display: inline;
-}
+	#details .title {
+		color: rgba(0, 0, 0, .6);
+		font-size: 2.2rem;
+	}
+		#details .notes .header,
+		#details .tasks .header {
+			color: rgba(0, 0, 0, .3);
+			font-size: 1.4rem;
+			text-transform: uppercase;
+		}
 
-.todoo_container{
-	color: white;
-	font-family: 'Open Sans', Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-	display: inline-block;
-	font-size: 1.4rem;
-}
+		#details .notes .content, 
+		#details .tasks .content {
+			color: rgba(0, 0, 0, .6);
+			font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+			font-size: 1rem;
+			line-height: 1.4rem;
+		}
 
-.todoo_title{
-	color: white;
-	font-family: 'Open Sans', Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-	font-size: 1.4rem;
-	max-width: 600px;	
-	padding: 10px 30px 10px 20px;
-	margin: 0px 0px 0px 0px;
-	vertical-align: middle;
-	text-align: left;
-	display: block;
-	word-wrap: break-word;
-}
+		#details .notes .content {
+			background-color: transparent;
+			border: none;
+			max-width: 100%;
+			padding: 20px;
+			height: 800px;
+		}
 
-.todoo_date{
-	color: white;
-	opacity: .9;
-	font-family: 'Open Sans', Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-	font-size: .9rem;
-	max-width: 300px;	
-	padding: 5px 0px 5px 0px;
-	margin: 0px 0px 0px 0px;
-	text-align: center;
-	display: block;
-}
+		#details .tasks .content {
 
-.done{	opacity: .5; }
-.done:hover{ opacity: .7; }
+		}
 
-.todoo_title:hover{ text-shadow: 0px 2px 3px #000; } */
+			#details .tasks .content .task {
+				color: rgba(0, 0, 0, .6);
+				border-bottom: 1px solid rgba(0, 0, 0, .1);
+				padding-bottom: 10px;
+			}
+
+
+/* FOR TESTING */
+.red { background-color: red; }
+.blue { background-color: blue; }
+.green { background-color: green; }
+.yellow { background-color: yellow; }

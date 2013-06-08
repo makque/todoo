@@ -1,5 +1,14 @@
-﻿body {
-    background-color: #efefef;
+﻿* {
+    margin: 0 auto; 
+    padding: 0; 
+}
+
+.round-corners {
+    border-radius: 5px;
+}
+
+body {
+    background-color: #eee;
     font-size: 62.5%;
     font-family: 'Open Sans', Arial, "Times New Roman", serif;
     padding-left: 20px;
@@ -18,8 +27,8 @@ ol{
     text-align: left;   
 }
 #wrapper {
-    background-color: #aaa;
-    width: 400px;
+    background-color: #ddd;
+    width: 600px;
     height: auto;
     text-align: center;
     padding: 20px 20px 20px 20px;
