@@ -72,18 +72,28 @@ $(function() {
 	}
 
 	App.Models.Todoo = Backbone.Model.extend({
+		initialize: function() {
+			this.listenTo(this, "change:id", this.createdAt);
+		},
 		validate: function(attrs) {
 			if (attrs.title.trim() == "")
 				return "Please specify a title.";
 		},
 		defaults: {
-			id: new Date().getTime(),
 			title: "Untitled",
 			note: "",
 			tasks: [],
 			color: 0,
 			due_date: "",
-			done: false
+			done: false,
+			created_at: "",
+			updated_at: ""
+		},
+		timestamp: function() {
+			return Date.now();
+		},
+		createdAt: function() {
+			this.save({created_at: this.timestamp()});
 		}
 	});
 
@@ -119,7 +129,9 @@ $(function() {
 		className: "summary",
 		template: _.template(App.Templates.todooSummary),
 		initialize: function() {
+			// _.bindAll(this, 'render');
 			this.listenTo(this.model, "change", this.render);
+			//this.listenTo(this.model, "all", function(e){console.log(e)});
 		},
 		events: {
 			"click .info": "toggleSummary",
@@ -158,8 +170,6 @@ $(function() {
 			$("#output").find(".summary").removeClass("idle");
 			// hide details
 			$("#details").addClass("hide");
-			App.todooSummary = null;
-			App.todooDetails = null;
 		},
 		activate: function() {
 			// only one summary can be active at a time in #output
@@ -173,15 +183,12 @@ $(function() {
 			// show details
 			$("#details").removeClass("hide");
 			// create a new view for the details set this as active summary
-			App.todooSummary = null;
-			App.todooDetails = null;
-			App.todooSummary = this;
-			App.todooDetails = new App.Views.TodooDetails({model: this.model});
+			App.todooDetailsView = new App.Views.TodooDetails({model: this.model});
 		}
 	});
 
 	App.Views.TodooDetails = Backbone.View.extend({
-		el: "#details",
+		tagName: "div",
 		template: _.template(App.Templates.todooDetails),
 		events: {
 			"click .title": "editTitle",
@@ -191,6 +198,7 @@ $(function() {
 		},
 		initialize: function() {
 			this.$el.html(this.template(this.model.toJSON()));
+			$("aside").html(this.el);
 			return this;
 		},
 		editTitle: function() {
@@ -243,7 +251,13 @@ $(function() {
 				}
 			}*/
 
-			App.todoos.create({color:color_id_in_view});
+			//var todoo = App.todoos.create({id: new Date().getTime()});
+			App.todoos.create({color: color_id_in_view}, {
+				success: function(model){
+					// set as the active todoo
+					//console.log(model.get("id"));
+				}
+			});
 		},
 	});
 

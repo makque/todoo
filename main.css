@@ -278,15 +278,15 @@ header .title {
 		font-size: 2.2rem;
 	}
 
-	#details.edit .title, #details .edit-title {
+	#details .edit .title, #details .edit-title {
 		display: none;
 	}
 
-	#details.edit .edit-title {
+	#details .edit .edit-title {
 		display: block;
 	}
 
-		#details.edit .edit-title input {
+		#details .edit .edit-title input {
 			border: none;
 			margin-bottom: 2px;
 		}
